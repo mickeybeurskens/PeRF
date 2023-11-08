@@ -67,7 +67,8 @@ build:
   run:
     - git clone --recursive https://github.com/nvlabs/tiny-cuda-nn
     - cd tiny-cuda-nn && cmake . -B build -DCMAKE_BUILD_TYPE=RelWithDebInfo && cmake --build build --config RelWithDebInfo
-    # - pip install tiny-cuda-nn/bindings/torch
+    # - cd tiny-cuda-nn/bindings/torch && export TCNN_CUDA_ARCHITECTURES=7 && python setup.py install  # TCNN_CUDA_ARCHITECTURES=7.5;8.0;8.6;9.0 crashes on anything but 7
+    # - cd tiny-cuda-nn/bindings/torch && python setup.py install  # This works after init
     # - "pip install /src/tiny-cuda-nn/bindings/torch"
     # - "cd tiny-cuda-nn/bindings/torch/ && python setup.py install && cd ../../.."
     # - "pip install git+https://github.com/NVlabs/tiny-cuda-nn/#subdirectory=bindings/torch"

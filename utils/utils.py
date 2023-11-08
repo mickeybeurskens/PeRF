@@ -47,20 +47,20 @@ def read_dpt(dpt_file_path):
 
 def write_video(out_path, images, fps=30, library='imageio'):
     assert out_path[-3:] == 'mp4'
-    if library == 'imageio':
-        import imageio
-        writer = imageio.get_writer(out_path, fps=fps)
-        for image in images:
-            writer.append_data(image)
-        writer.close()
-    else:
+    # if library == 'imageio':
+    #     import imageio
+    #     writer = imageio.get_writer(out_path, fps=fps)
+    #     for image in images:
+    #         writer.append_data(image)
+    #     writer.close()
+    # else:
         # Use OpenCV
-        fourcc = cv.VideoWriter_fourcc(*'mp4v')
-        writer = cv.VideoWriter(out_path, fourcc, fps,
-            (images[0].shape[1], images[0].shape[0]))
-        for image in images:
-            writer.write(image)
-        writer.release()
+    fourcc = cv.VideoWriter_fourcc(*'mp4v')
+    writer = cv.VideoWriter(out_path, fourcc, fps,
+        (images[0].shape[1], images[0].shape[0]))
+    for image in images:
+        writer.write(image)
+    writer.release()
 
 
 def write_image(out_path, image):
